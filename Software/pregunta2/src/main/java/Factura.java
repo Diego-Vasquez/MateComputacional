@@ -1,0 +1,19 @@
+enum CustomerType {PERSON, COMPANY;}
+
+public class Factura {
+
+    private final double value;
+    private final String country;
+    private final CustomerType customerType;
+
+    public Factura(double value, String country, CustomerType customerType) {
+        this.value = value;
+        this.country = country;
+        this.customerType = customerType;
+    }
+
+    public double calculate() {
+        double ratio = 0.1;
+        return value * ratio;
+    }
+}
