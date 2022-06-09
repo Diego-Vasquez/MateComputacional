@@ -1,0 +1,54 @@
+Pregunta 3 (3 puntos)
+Enumere las dependencias entre las unidades de software que existen pero que no se describen mediante llamadas a métodos, referencias a objetos u otras construcciones que se detectan fácilmente en el código.
+Respuesta
+Considere dos paquetes cuyas dependencias están programadas de dos maneras diferentes como se muestra en la Figura 10.1. En el lado izquierdo (a) el paquete system.gui contiene dos clases que depende de dos, respectivamente tres, clases en el paquete system.domain. Por lo tanto, un cambio en la clase de gris oscuro en el paquete inferior probablemente inducirá cambios a realizar en otras tres clases, las marcadas en gris claro en la figura. Para ejemplo, es posible que se deba cambiar la firma de un método en la clase gris oscuro que significa que todos los lugares en las clases de color gris claro donde se llama al método deben revisarse y analizarse para que las clases se compilen nuevamente. Peor aún, si un desarrollador en el equipo de código de dominio responsable del paquete system.domain realiza cambios a lo que hace un método en la clase gris oscuro pero no cambia ninguna firma de método, puede recordar decirle a su colega que trabaja en la clase gris claro dentro del mismo paquete, pero tal vez no le diga al equipo de GUI en el pasillo. Tener
+Los casos de prueba fuertes pueden detectar tales cambios en el contrato, pero aún así se debe invertir esfuerzo para hacer que las clases de gris claro vuelvan a funcionar correctamente. Los paquetes tienen apretado o alto acoplamiento; y un alto acoplamiento reduce la mantenibilidad.
+El alto acoplamiento también afecta negativamente la confiabilidad, ya que cualquier defecto o incluso solo el cambio de comportamiento introducido en la clase gris oscuro puede crear efectos no deseados y tal vez defectos en todas las clases dependiendo de ello. Por lo tanto, incluso un pequeño cambio en el La clase puede reducir la confiabilidad en muchas clases dependientes. También una clase que depende en muchas otras clases se vuelve más difícil de leer y comprender de nuevo aumentando la probabilidad de introducir defectos. Finalmente, una clase que tiene muchas dependencias es más difícil de reutilizar en otro contexto.
+
+La implementación que se muestra en el lado derecho (b) de la figura muestra los mismos dos
+paquetes y el mismo número de clases, pero se ha prestado atención a reducir el
+acoplamiento entre clases. Por lo tanto, solo una clase depende directamente del cambio marcado
+clase. Las dos clases en el paquete superior solo dependen de una sola clase en el paquete inferior
+paquete, en esencia, esta clase encapsula el paquete (que de hecho es la FACADE
+patrón, discutido en el Capítulo 19.) Los paquetes tienen tveak o acoplamiento bajo.
+El acoplamiento débil generalmente funciona a favor de un software confiable y mantenible. Mantenible porque el cambio en la clase de cambio marcado solo tiene implicaciones en un
+única clase dependiente; por lo tanto, el esfuerzo de revisión, recodificación, depuración y prueba es menor
+en comparación con la versión de acoplamiento estrecho. Y los efectos secundarios y defectos introducidos
+en la clase gris oscuro idealmente solo tiene consecuencias de confiabilidad para la clase dependiente única. Es sólo la interacción entre estas dos clases que debemos asegurar la
+confiabilidad de. Por lo tanto, el acoplamiento débil también funciona para lograr un software más confiable. Y,
+una clase con pocas dependencias es más fácil de reutilizar y hacer que funcione en un nuevo software
+contexto.
+
+
+Discusión del Ejercicio 10.1:
+Las dependencias indirectas entre unidades suelen ser las más diabólicas cuando se trata de
+a defectos de software. Son difíciles de rastrear y a menudo te desconciertas cuando
+aparecen por primera vez. Y el compilador no tiene ninguna posibilidad de ayudarte.
+Las dependencias indirectas típicas incluyen: Compartir una variable global común, confiar en
+entradas en los registros del sistema operativo o variables de entorno, basándose en un común
+formato de archivo que las unidades leen o escriben, basándose en un orden específico de inicialización, basándose en un esquema de base de datos específico, basándose en números de puerto o direcciones IP específicos,
+etc. Todos estos crean acoplamiento entre unidades en un sistema pero son mucho menos visibles
+acoplamientos que referencias directas a objetos.
+La lista es muy larga y en un equipo de desarrollo puede ser bastante difícil asegurar que
+todo el mundo entiende todos los acoplamientos entre unidades. La historia de guerra en la barra lateral 3.1 es
+un buen ejemplo de un acoplamiento que se ocultó al desarrollador de un equipo. Tambien es
+un ejemplo de un acoplamiento desafortunado que debería haber sido evitado por el otro
+desarrolladores
+
+
+
+Pregunta 4 (3 puntos)
+Ejercicio 10.2: Encuentra un ejemplo de alta cohesión y baja cohesión paquete en las bibliotecas de Java.
+La alta cohesión también contribuye a la fiabilidad y la mantenibilidad. 
+Las unidades de software cohesivas aumentan en gran medida la capacidad de análisis del software, la capacidad de encontrar defectos o piezas para modificar, tal como lo permite el enfoque organizado para almacenar ropa.
+Nosotros para encontrar calcetines rápidamente. Si una unidad de software tiene demasiadas responsabilidades, obtendrá cambiado con demasiada frecuencia. Si una clase solo implementa una sola característica, cambiará mucho con menos frecuencia, aumentando así la estabilidad. Por supuesto, debes mantener el equilibrio. Software cohesivo no significa software donde cada clase solo tiene un método y cada paquete solo una clase. 
+En la paga caso de la estación, comencé con una abstracción cohesiva, representada por el PayStation interfaz, pero tenía cinco-seis responsabilidades. Sin embargo, todos ellos estaban muy relacionados con el “concepto de ser una estación de pago”. Cuando surgió la necesidad, se refactorizó para introducir la estrategia de tarifas que, por supuesto, también está muy enfocada.
+Cohesión y responsabilidad son dos caras de la misma moneda por definición. Por lo tanto, la discusión sobre roles, responsabilidades y comportamiento en el Capítulo 15 está íntimamente
+relacionado con el concepto de cohesión.
+
+
+Discusión del Ejercicio 10.2:
+Los ejemplos clásicos de las bibliotecas de Java son java.util que tiene baja cohesión como todo tipo
+de diferentes clases con poco o nada en común se agrupan en este paquete:
+contiene clases de colección, clases de calendario, etc. El paquete javax.swing es altamente
+cohesivo ya que solo los componentes de GUI relacionados con Swing están empaquetados aquí.
