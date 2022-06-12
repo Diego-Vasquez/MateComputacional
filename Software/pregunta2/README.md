@@ -34,7 +34,7 @@ directamente setear su variable country como "US" independientemente del valor q
 instancia del FacturaBuilder.
 
 ### 4. Usa las variables facturaValue y tax en la aseveración para hacer la prueba más clara a través de variables explicativas
-![Coverage 1](images/anyCompany.png)
+![Coverage 1](images/pregunta4.png)
 podemos hacer algo tal como sigue a continuación para que el codigo sea mas claro
 ![Coverage 1](images/BuilderTest.png)
 donde detallamos cada variable a usar, es decir el valor, tax y country que tendra la boleta, luego de esto solo 
